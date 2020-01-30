@@ -1,2 +1,2 @@
 #!/bin/bash
-ls -aF --format=comma
+ls -a --file-type --format=comma
