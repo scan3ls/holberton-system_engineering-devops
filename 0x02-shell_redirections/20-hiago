@@ -1,2 +1,2 @@
 #!/bin/bash
-tr -d "[c, c]"
+tr -d "[c, C]"
