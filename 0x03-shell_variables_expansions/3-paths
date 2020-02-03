@@ -1,0 +1,2 @@
+#!/bin/bash
+echo $(($(fgrep -o :/ <<<"$PATH" | wc -l) +1))
