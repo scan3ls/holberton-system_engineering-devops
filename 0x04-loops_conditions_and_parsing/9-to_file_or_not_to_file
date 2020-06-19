@@ -1,0 +1,27 @@
+#!/usr/bin/env bash
+# gives info about the holbertonschool file
+
+HFILE="holbertonschool"
+
+if [ -a $HFILE ]
+	then
+		echo "$HFILE file exists"
+
+else
+		echo "$HFILE file does not exist"
+		exit
+fi
+
+if [ -s $HFILE ]
+	then
+		echo "$HFILE file is not empty"
+else
+		echo "$HFILE file is empty"
+fi
+
+if [ -f $HFILE ]
+	then
+		echo "$HFILE is a regular file"
+else
+		:
+fi
