@@ -4,7 +4,7 @@ This is a repository containing assignments for Holberton School.
 
 |FILES| DESCRIPTIONS|
 |---|---|
-|0-RSA_public_key.pub|  Read for this task:|
+|0-RSA_public_key.pub|  Create SSH RSA key pair|
 |1-for_holberton_school|  Write a Bash script that displays ```Holberton School``` 10 times.|
 |2-while_holberton_school|  Write a Bash script that displays ```Holberton School``` 10 times.|
 |3-until_holberton_school|  Write a Bash script that displays ```Holberton School``` 10 times.|
