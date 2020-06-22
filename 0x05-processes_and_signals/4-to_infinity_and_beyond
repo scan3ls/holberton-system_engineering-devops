@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+# displays a list of curent bash processes
+
+i=1
+while [ $i -gt 0 ];do
+	echo "To infinity and beyond"
+	sleep 2
+done

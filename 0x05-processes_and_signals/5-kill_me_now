@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+# kills to infinity and beyond
+# shellcheck disable=SC2009
+
+pid="$(ps -x | grep "./4-to" | head -1 | cut -b 2-5)"
+
+kill "$pid"

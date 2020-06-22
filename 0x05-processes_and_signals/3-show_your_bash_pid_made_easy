@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+# displays a list of curent bash processes
+
+pgrep -l "bash"

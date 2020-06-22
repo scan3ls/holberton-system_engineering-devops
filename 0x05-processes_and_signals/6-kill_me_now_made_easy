@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+# kills to infinity and beyond
+
+pkill "bash"

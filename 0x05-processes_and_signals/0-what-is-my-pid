@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+# get own pid
+
+pid="$(pidof bash)"
+
+echo "$pid" | cut -d " " -f 1
