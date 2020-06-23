@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 # kills to highlander
+# shellcheck disable=SC2009
 
 pid="$(ps -x | grep "./7-high" | head -1 | cut -b 2-5)"
 
