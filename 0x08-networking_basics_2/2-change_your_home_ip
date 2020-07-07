@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+sudo cp /etc/hosts temp
+
+sed '/ localhost/d' temp > temp1
+sed '/ facebook/d' temp1 > temp2
+cat resolves >> temp2
+
+sudo cp -f temp2 /etc/hosts
+
+rm -rf temp1 temp2 temp
