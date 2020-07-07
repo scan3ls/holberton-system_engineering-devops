@@ -1,7 +1,7 @@
 # 0x07. Networking basics #0
 
 This is a repository containing assignments for Holberton School.
-These files contain answers to multiple choice questions.
+Some files contain answers to multiple choice questions.
 
 |FILES| DESCRIPTIONS|
 |---|---|
