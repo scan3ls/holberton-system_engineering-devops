@@ -7,4 +7,4 @@ fi
 
 IP=$1
 
-ping -c 5 $IP
+ping -c 5 "$IP"
