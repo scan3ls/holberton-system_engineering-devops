@@ -1,2 +1,3 @@
 #!/usr/bin/env bash
+# listen to 98
 nc -l 98

@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+# change ips
 
 sudo cp /etc/hosts temp
 
