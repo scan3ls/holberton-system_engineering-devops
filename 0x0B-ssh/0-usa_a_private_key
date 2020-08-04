@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+# connect to a server as ubuntu user
+ssh -i ~/.ssh/holberton ubuntu@35.227.7.221
