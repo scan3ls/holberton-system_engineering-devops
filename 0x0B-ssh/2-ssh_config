@@ -1,7 +1,6 @@
 Host server
   HostName 35.227.7.221
   User ubuntu
-  Port 2222
   UserKnownHostsFile /dev/null
   StrictHostKeyChecking no
   PasswordAuthentication no
