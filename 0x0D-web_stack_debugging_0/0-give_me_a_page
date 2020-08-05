@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+# have you tried turning it off and on again
+service apache2 restart
