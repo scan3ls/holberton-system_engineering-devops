@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+# install Nginx
+
+sudo apt-get update
+sudo apt-get -y install Nginx
+sudo ufw allow 'Nginx HTTP'
+sudo rm /var/www/html/index.nginx-debian.html
+echo "Holberton School" > index.html
+sudo mv index.html /var/www/html
+sudo mkdir /var/www/html/redirect_me
+sudo echo "No see this" > /var/www/html/redirect_me/index.html
+
+redirect='\\n\t\tlocation ~ ^/redirect_me/(.*) {\n\t\t\treturn 301 /$1;\n\t\t}'
+file="/etc/nginxsites-available/default"
+line_num="$(grep -n "}" $file | head -1 | cut -f 1 | tr -d :)"
+new_num=$(( $line_num + 1 ))
+sudo sed "$new_num i $redirect" $file > new
+sudo mv new $file
