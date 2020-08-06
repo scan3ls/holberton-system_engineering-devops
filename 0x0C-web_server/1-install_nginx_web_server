@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # install Nginx
 sudo apt-get -y update
-sudo apt-get -y install Nginx
+sudo apt-get -y install nginx
 echo -e "<!doctype html>
 <html lang="en">
   <head>
