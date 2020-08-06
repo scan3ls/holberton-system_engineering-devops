@@ -3,7 +3,12 @@
 sudo apt-get update
 sudo apt-get -y install Nginx
 sudo ufw allow 'Nginx HTTP'
-sudo rm /var/www/html/index.nginx-debian.html
-echo "Holberton School" > index.html
-sudo mv index.html /var/www/html
+echo -e "<!doctype html>
+<html lang="en">
+	<head>
+	</head>
+	<body>
+		<p>Holberton School</p>
+	</body>
+</html>" | sudo tee /var/www/html/index.nginx-debian.html 1> /dev/null
 sudo service nginx restart
