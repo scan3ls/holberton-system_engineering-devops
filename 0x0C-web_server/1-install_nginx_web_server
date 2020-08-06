@@ -8,7 +8,7 @@ echo -e "<!doctype html>
 	<head>
 	</head>
 	<body>
-		<p>Holberton School</p>
+		<p>Holberton School 1</p>
 	</body>
-</html>" | sudo tee /var/www/html/index.nginx-debian.html 1> /dev/null
+</html>" | sudo tee /var/www/html/index.html 1> /dev/null
 sudo service nginx restart
