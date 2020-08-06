@@ -2,13 +2,19 @@
 # install Nginx
 sudo apt-get -y update
 sudo apt-get -y install Nginx
-sudo ufw allow 'Nginx HTTP'
 echo -e "<!doctype html>
 <html lang="en">
-	<head>
-	</head>
-	<body>
-		<p>Holberton School 1</p>
-	</body>
-</html>" | sudo tee /var/www/html/index.html 1> /dev/null
+  <head>
+    <meta charset="utf-8">
+    <title>Holberton School the title</title>
+  </head>
+  <body>
+    <header>
+    </header>
+    <article>
+		<h1>Holberton School: Holberton School harder</h1>
+		<p>Holberton School paragraph</p>
+    </article>
+  </body>
+</html>" | sudo tee /var/www/html/index.nginx-debian.html 1> /dev/null
 sudo service nginx restart
