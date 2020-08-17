@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+# install haproxy
+# shellcheck disable=SC2154,SC2016,SC2129
+
+sudo apt-get install -y software-properties-common
+sudo add-apt-repository -y ppa:vbernat/haproxy-1.8
+sudo apt-get -y update
+sudo apt-get -y install haproxy=1.8.\*
+file="/etc/haproxy/haproxy.cfg"
+# file="temp"
+cp $file tmp
+string="listen http-in\n\tbind *:80"
+server1="\tserver 1712-web01 35.227.7.221:80 maxconn 32"
+server2="\tserver 1712-web02 3.91.154.163:80 maxconn 32"
+balance="\tbalance roundrobin"
+echo -e "$string" >> tmp
+echo -e "$server1" >> tmp
+echo -e "$server2" >> tmp
+echo -e "$balance" >> tmp
+sudo mv tmp "$file"
+sudo service haproxy restart
