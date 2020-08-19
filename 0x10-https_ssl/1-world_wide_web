@@ -1,0 +1,26 @@
+#!/usr/bin/env bash
+# displays info about sub-domains
+path=$1
+sub_path=$2
+
+print_details () 
+{
+    if [ "$2" ]
+        then
+            string=$(dig "$sub_path.$path" | grep -A1 'ANSWER SECTION:')
+            rec_type=$(awk '{print $4}' <<< "$string")
+            addr=$(awk '{print $5}' <<< "$string")
+            printf "The subdomain %s is a %s record and points to %s\n" $sub_path $rec_type $addr
+    else
+            for sub in 'www' 'lb-01' 'web-01' 'web-02'
+                do
+                    string=$(dig $sub.$path | grep -A1 'ANSWER SECTION:')
+                    rec_type=$(awk '{print $4}' <<< "$string")
+                    addr=$(awk '{print $5}' <<< "$string")
+                    printf "The subdomain %s is a %s record and points to %s\n" $sub $rec_type $addr  
+            done
+
+    fi
+}
+
+print_details "$1" "$2"
