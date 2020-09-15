@@ -75,7 +75,7 @@ if __name__ == "__main__":
     import requests
     from sys import argv
 
-    if len(argv) not in [1, 2]:
+    if len(argv) != 1:
         print("Usage: ./0-gather_data_from_an_API <user_id>")
         exit()
 
