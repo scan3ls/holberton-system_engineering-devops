@@ -38,95 +38,6 @@ def get_completed_tasks(tasks={}):
     return sorted(task_list), completed
 
 
-def text_output(user, tasks):
-    """
-        Produces text output of task
-        info given
-
-        Attributes:
-            user - desired user
-            tasks - list of tasks
-    """
-    if user is None or tasks is None:
-        return
-
-    user_id = user['id']
-    tasks = get_users_tasks(user_id)
-    name = user['name']
-    total_tasks = len(tasks)
-    completed_tasks, completed = get_completed_tasks(tasks)
-
-    msg = "Employee {} is done with tasks({}/{}):".format(
-            name, completed, total_tasks
-    )
-    print(msg)
-    for task in completed_tasks:
-        print("\t", task)
-
-
-def csv_ouput(user=None, tasks=None):
-    """
-        Compiles a csv file of task
-        info given
-
-        Attributes:
-            user - desired user
-            tasks - list of tasks
-    """
-
-    user_id = str(user['id'])
-    tasks = get_users_tasks(int(user_id))
-    file_name = "{}.csv".format(user_id)
-    f = open(file_name, "w")
-    for task in tasks.values():
-        user_name = str(user['username'])
-        task_status = str(task['completed'])
-        task_title = str(task['title'])
-        params = [user_id, user_name, task_status, task_title]
-        entry = ','.join(map(lambda x: '"' + x + '"', params))
-        f.write(entry + "\n")
-    f.close()
-
-
-def json_output(user=None, tasks=None, f=None):
-    """
-        Compiles a json file of task
-        info given
-
-        Attributes:
-            user - desired user
-            tasks - list of tasks
-    """
-    if user is None or \
-            tasks is None or \
-            f is None:
-        return
-
-    user_id = str(user['id'])
-    user_name = str(user['username'])
-    tasks = get_users_tasks(int(user_id))
-    file_name = "{}.json".format(user_id)
-    open_string = "\"{}\": [".format(user_id)
-    f.write(open_string)
-    counter = 0
-
-    for task in tasks.values():
-        title = task['title']
-        status = str(task['completed']).lower()
-        task_string = "\"task\": \"{}\", ".format(title)
-        status_string = "\"completed\": {}}}".format(status)
-        user_string = "{{\"username\": \"{}\", ".format(user_name)
-        string = user_string + task_string + status_string
-        if counter == 0:
-            f.write(string)
-            counter = 1
-        else:
-            f.write(", " + string)
-
-    close_string = "]"
-    f.write(close_string)
-
-
 def all_json(users, tasks):
     """
         Compiles a json file of task
@@ -136,26 +47,25 @@ def all_json(users, tasks):
             user - desired user
             tasks - list of tasks
     """
-    import os
+    import json
 
-    if type(users) is list:
-        file_name = "todo_all_employees.json"
-    else:
-        file_name = "{}.json".format(users['id'])
-
-    f = open(file_name, "w")
-    f.write("{")
-    if type(users) is list:
+    with open("todo_all_employees.json", "w") as f:
+        user_dict = {}
         for user in users:
-            json_output(user, tasks, f)
-            f.write(", ")
-    else:
-        json_output(users, tasks, f)
-        f.write(", ")
+            tasks = get_users_tasks(user['id'])
+            task_list = []
+            for task in tasks.values():
+                task_list.append(
+                    {
+                        "username": user['username'],
+                        "task": task['title'],
+                        "completed": task['completed']
+                    }
+                )
+            user_dict[str(user['id'])] = task_list
 
-    os.system("sed -i '$ s/.$/}}]}}/' {}".format(file_name))
-
-    f.close()
+        p = json.dumps(user_dict)
+        f.write(p)
 
 if __name__ == "__main__":
     import requests
@@ -179,7 +89,4 @@ if __name__ == "__main__":
     response = requests.get(user_url)
     user = response.json()
 
-    # text_output(user, tasks)
-    # csv_ouput(user, tasks)
-    # json_output(user, tasks)
     all_json(user, tasks)
