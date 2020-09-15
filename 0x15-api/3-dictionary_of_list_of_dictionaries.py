@@ -49,6 +49,10 @@ def all_json(users, tasks):
     """
     import json
 
+    if users is None or \
+            tasks is None:
+        return
+
     with open("todo_all_employees.json", "w") as f:
         user_dict = {}
         for user in users:
