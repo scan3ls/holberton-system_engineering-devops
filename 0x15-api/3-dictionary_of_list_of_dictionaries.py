@@ -113,10 +113,10 @@ def json_output(user=None, tasks=None, f=None):
     for task in tasks.values():
         title = task['title']
         status = str(task['completed']).lower()
-        task_string = "{{\"task\": \"{}\", ".format(title)
-        status_string = "\"completed\": {}, ".format(status)
-        user_string = "\"username\": \"{}\"}}".format(user_name)
-        string = task_string + status_string + user_string
+        task_string = "\"task\": \"{}\", ".format(title)
+        status_string = "\"completed\": {}}}".format(status)
+        user_string = "{{\"username\": \"{}\", ".format(user_name)
+        string = user_string + task_string + status_string
         if counter == 0:
             f.write(string)
             counter = 1
@@ -181,5 +181,5 @@ if __name__ == "__main__":
 
     # text_output(user, tasks)
     # csv_ouput(user, tasks)
-    json_output(user, tasks)
+    # json_output(user, tasks)
     all_json(user, tasks)
