@@ -16,7 +16,7 @@ def get_users_tasks(user_id=None):
         if task['userId'] is not user_id:
             continue
         task_list[task['id']] = {
-            'title': task['title'],
+            'task': task['title'],
             'completed': task['completed']
         }
     return task_list
