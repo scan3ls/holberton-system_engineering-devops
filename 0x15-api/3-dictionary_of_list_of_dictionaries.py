@@ -21,23 +21,6 @@ def get_users_tasks(user_id=None):
         }
     return task_list
 
-
-def get_completed_tasks(tasks={}):
-    """
-        get finished tasks by task set
-    """
-    if tasks == {}:
-        return 0
-    completed = 0
-    task_list = []
-    for task_id, task in tasks.items():
-        if task['completed'] is False:
-            continue
-        completed += 1
-        task_list.append(task['title'])
-    return sorted(task_list), completed
-
-
 def all_json(users, tasks):
     """
         Compiles a json file of task
@@ -53,22 +36,17 @@ def all_json(users, tasks):
             tasks is None:
         return
 
-    with open("todo_all_employees.json", "w") as f:
-        user_dict = {}
-        for user in users:
-            tasks = get_users_tasks(user['id'])
-            task_list = []
-            for task in tasks.values():
-                task_list.append(
-                    {
-                        "username": user['username'],
-                        "task": task['title'],
-                        "completed": task['completed']
-                    }
-                )
-            user_dict[str(user['id'])] = task_list
+    user_dict = {}
+    for user in users:
+        tasks = get_users_tasks(user['id'])
+        task_list = []
+        for task in tasks.values():
+            task["username"] = user['username']
+            task_list.append(task)
+        user_dict[str(user['id'])] = task_list
 
-        p = json.dumps(user_dict)
+    p = json.dumps(user_dict)
+    with open("todo_all_employees.json", "w") as f:
         f.write(p)
 
 if __name__ == "__main__":
