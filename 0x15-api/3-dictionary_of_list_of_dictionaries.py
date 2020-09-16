@@ -21,6 +21,7 @@ def get_users_tasks(user_id=None):
         }
     return task_list
 
+
 def all_json(users, tasks):
     """
         Compiles a json file of task
