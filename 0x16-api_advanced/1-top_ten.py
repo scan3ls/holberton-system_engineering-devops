@@ -33,7 +33,7 @@ def top_ten(subreddit):
         params=payload
     )
 
-    if response.status_code == 404:
+    if response.status_code != 200:
         print(None)
         return
 
