@@ -21,6 +21,9 @@ def recurse(subreddit, hot_list=[], after=None):
     """ query function """
     import requests
 
+    if subreddit is None:
+        return None
+
     headers = {
         'user-agent': get_user_agent()
     }
