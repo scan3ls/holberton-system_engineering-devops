@@ -40,11 +40,15 @@ def recurse(subreddit, hot_list=[], after=None):
         params=payload
     )
 
-    if response.status_code == 404:
+    if response.status_code != 200:
         return None
     json = response.json()
     posts = json['data']['children']
     after = json['data']['after']
+
+    kind = posts[0]['kind']
+    if kind != "t3":
+        return None    
 
     length = len(posts)
 
