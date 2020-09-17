@@ -32,7 +32,7 @@ def top_ten(subreddit):
         'limit': '10'
     }
     response = requests.get(
-        'https://www.reddit.com/r/{}/top.json'.format(
+        'https://www.reddit.com/r/{}/hot.json'.format(
             subreddit),
         headers=headers,
         params=payload
