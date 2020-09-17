@@ -20,6 +20,7 @@ def get_user_agent():
 def top_ten(subreddit):
     """ query function """
     import requests
+
     headers = {
         'user-agent': get_user_agent()
     }
@@ -41,6 +42,10 @@ def top_ten(subreddit):
     posts = json['data']['children']
 
     for post in posts:
+        kind = post['kind']
+        if kind != 't3':
+            print(None)
+            return
         data = post['data']
         title = data['title']
         print(title)
