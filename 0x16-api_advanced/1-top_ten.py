@@ -24,7 +24,6 @@ def top_ten(subreddit):
         'user-agent': get_user_agent()
     }
     payload = {
-        'count': '3',
         'limit': '10'
     }
     response = requests.get(
