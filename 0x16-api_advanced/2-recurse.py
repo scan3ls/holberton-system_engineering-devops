@@ -46,9 +46,12 @@ def recurse(subreddit, hot_list=[], after=None):
     posts = json['data']['children']
     after = json['data']['after']
 
+    if posts == []:
+        return None
+
     kind = posts[0]['kind']
     if kind != "t3":
-        return None    
+        return None
 
     length = len(posts)
 
