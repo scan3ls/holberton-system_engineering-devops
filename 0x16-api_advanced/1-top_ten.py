@@ -21,6 +21,10 @@ def top_ten(subreddit):
     """ query function """
     import requests
 
+    if subreddit is None:
+        print(None)
+        return
+
     headers = {
         'user-agent': get_user_agent()
     }
