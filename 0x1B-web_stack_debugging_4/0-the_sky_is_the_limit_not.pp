@@ -4,8 +4,8 @@ exec { 'comment out limit':
     path    => [ '/usr/bin', '/bin', '/usr/sbin', '/sbin' ],
 }
 exec { 'nginx restart':
-    command => 'sudo 'service nginx restart',
-    path    => 'usr/bin',
+    command => 'sudo service nginx restart',
+    path    => '/usr/bin',
 } ~>
 service { 'nginx':
     ensure  => running,
